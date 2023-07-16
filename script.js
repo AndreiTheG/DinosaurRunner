@@ -87,13 +87,13 @@ function sun() {
 
 function avoidTheObstacle(dinosaur, obstacle, score, currentWidth, currentHeight, currentX, 
     /*currentX2, currentX3, currentX4, currentX5,*/ currentY, isTrue, comingTheObstacles) {
-    for (let i = 0; i < 5; ++i) {
-        obstacle.closeRange(currentX.val[i], currentY);
-    }
-    //obstacle.closeRange(currentX2, currentY);
-    //obstacle.closeRange(currentX3, currentY);
-    //obstacle.closeRange(currentX4, currentY);
-    //obstacle.closeRange(currentX5, currentY);
+    //for (let i = 0; i < 5; ++i) {
+        obstacle.closeRange(currentX.val[0], currentY);
+    //}
+    obstacle.closeRange(currentX.val[1], currentY);
+    obstacle.closeRange(currentX.val[2], currentY);
+    obstacle.closeRange(currentX.val[3], currentY);
+    obstacle.closeRange(currentX.val[4], currentY);
     if (currentX.val[0] >= width / 2 && currentX.val[0] <= width / 2 + 285) {
         isTrue.val = false;
         currentX.val[4] = currentX.val[3];
