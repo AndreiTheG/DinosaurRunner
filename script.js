@@ -39,12 +39,12 @@ class Obstacle {
         ctx.fillRect(currentWidth.val, currentHeight.val, 40, 20);
     }
 
-    closeRange(currentWidth, currentHeight) {
+    closeRange(currentWidth, currentHeight, poz) {
         ctx.fillStyle = "rgb(135, 206, 235)";
-        ctx.fillRect(currentWidth.val, currentHeight.val, 40, 20);
-        currentWidth = currentWidth - 5;
+        ctx.fillRect(currentWidth.val[poz], currentHeight.val, 40, 20);
+        currentWidth.val[poz] = currentWidth.val[poz] - 5;
         ctx.fillStyle = "rgb(1, 50, 32)";
-        ctx.fillRect(currentWidth.val, currentHeight.val, 40, 20);
+        ctx.fillRect(currentWidth.val[poz], currentHeight.val, 40, 20);
     }
 }
 
@@ -87,13 +87,13 @@ function sun() {
 
 function avoidTheObstacle(dinosaur, obstacle, score, currentWidth, currentHeight, currentX, 
     /*currentX2, currentX3, currentX4, currentX5,*/ currentY, isTrue, comingTheObstacles) {
-    //for (let i = 0; i < 5; ++i) {
-        obstacle.closeRange(currentX.val[0], currentY);
-    //}
-    obstacle.closeRange(currentX.val[1], currentY);
-    obstacle.closeRange(currentX.val[2], currentY);
-    obstacle.closeRange(currentX.val[3], currentY);
-    obstacle.closeRange(currentX.val[4], currentY);
+    for (let i = 0; i < 5; ++i) {
+        obstacle.closeRange(currentX, currentY, i);
+    }
+    //obstacle.closeRange(currentX, currentY);
+    //obstacle.closeRange(currentX, currentY);
+    //obstacle.closeRange(currentX, currentY);
+    //obstacle.closeRange(currentX, currentY);
     if (currentX.val[0] >= width / 2 && currentX.val[0] <= width / 2 + 285) {
         isTrue.val = false;
         currentX.val[4] = currentX.val[3];
