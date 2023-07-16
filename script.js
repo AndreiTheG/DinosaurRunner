@@ -85,15 +85,10 @@ function sun() {
     ctx.stroke();   
 }
 
-function avoidTheObstacle(dinosaur, obstacle, score, currentWidth, currentHeight, currentX, 
-    /*currentX2, currentX3, currentX4, currentX5,*/ currentY, isTrue, comingTheObstacles) {
+function avoidTheObstacle(dinosaur, obstacle, score, currentWidth, currentHeight, currentX, currentY, isTrue, comingTheObstacles) {
     for (let i = 0; i < 5; ++i) {
         obstacle.closeRange(currentX, currentY, i);
     }
-    //obstacle.closeRange(currentX, currentY);
-    //obstacle.closeRange(currentX, currentY);
-    //obstacle.closeRange(currentX, currentY);
-    //obstacle.closeRange(currentX, currentY);
     if (currentX.val[0] >= width / 2 && currentX.val[0] <= width / 2 + 285) {
         isTrue.val = false;
         currentX.val[4] = currentX.val[3];
@@ -128,12 +123,7 @@ function startGame() {
     const isPressed = {val: false};
     gameController(dinosaur, currentWidth, currentHeight, isPressed);
     const currentX = {val: [width, width, width, width, width]};
-    //const currentX1 = {val: width};
     const currentY = {val: (currentHeight.val + 40)};
-    // const currentX2 = {val: width};
-    // const currentX3 = {val: width};
-    // const currentX4 = {val: width};
-    // const currentX5 = {val: width};
     const obstacle = new Obstacle(currentX.val[0], currentY);
     const score = {val: 0}, isTrue = {val: false};
     comingTheObstacles = setInterval(function() {
@@ -163,7 +153,7 @@ function gameOver(dinosaur, score) {
     let button = document.createElement('button');
     button.className = "btn btn-danger";
     button.innerHTML = "Replay";
-    button.addEventListener('click', ()=>{
+    button.addEventListener('click', () => {
         refresh()
     });
     container.appendChild(button);
