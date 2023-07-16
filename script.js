@@ -41,10 +41,10 @@ class Obstacle {
 
     closeRange(currentWidth, currentHeight) {
         ctx.fillStyle = "rgb(135, 206, 235)";
-        ctx.fillRect(currentWidth.val, currentHeight.val, 40, 20);
-        currentWidth.val = currentWidth.val - 5;
+        ctx.fillRect(currentWidth.val[0], currentHeight.val, 40, 20);
+        currentWidth.val[0] = currentWidth.val[0] - 5;
         ctx.fillStyle = "rgb(1, 50, 32)";
-        ctx.fillRect(currentWidth.val, currentHeight.val, 40, 20);
+        ctx.fillRect(currentWidth.val[0], currentHeight.val, 40, 20);
     }
 }
 
