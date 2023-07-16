@@ -85,14 +85,16 @@ function sun() {
     ctx.stroke();   
 }
 
-function avoidTheObstacle(dinosaur, obstacle, score, currentWidth, currentHeight, currentX1, 
-    currentX2, currentX3, currentX4, currentX5, currentY, isTrue, comingTheObstacles) {
-    obstacle.closeRange(currentX1, currentY);
-    obstacle.closeRange(currentX2, currentY);
-    obstacle.closeRange(currentX3, currentY);
-    obstacle.closeRange(currentX4, currentY);
-    obstacle.closeRange(currentX5, currentY);
-    if (currentX1.val >= width / 2 && currentX1.val <= width / 2 + 285) {
+function avoidTheObstacle(dinosaur, obstacle, score, currentWidth, currentHeight, currentX, 
+    /*currentX2, currentX3, currentX4, currentX5,*/ currentY, isTrue, comingTheObstacles) {
+    for (let i = 0; i < 5; ++i) {
+        obstacle.closeRange(currentX.val[i], currentY);
+    }
+    //obstacle.closeRange(currentX2, currentY);
+    //obstacle.closeRange(currentX3, currentY);
+    //obstacle.closeRange(currentX4, currentY);
+    //obstacle.closeRange(currentX5, currentY);
+    /*if (currentX1.val >= width / 2 && currentX1.val <= width / 2 + 285) {
         isTrue.val = false;
         currentX5.val = currentX4.val;
         currentX4.val = currentX3.val;
@@ -108,7 +110,7 @@ function avoidTheObstacle(dinosaur, obstacle, score, currentWidth, currentHeight
     } else if (currentWidth.val - currentX4.val > 40 && isTrue.val == false) {
         isTrue.val = true;
         ++score.val;
-    }
+    }*/
 }
 
 function startGame() {
@@ -125,16 +127,18 @@ function startGame() {
     const currentWidth = {val: coordonateX.val}, currentHeight = {val: coordonateY.val};
     const isPressed = {val: false};
     gameController(dinosaur, currentWidth, currentHeight, isPressed);
-    const currentX1 = {val: width}, currentY = {val: (currentHeight.val + 40)};
-    const currentX2 = {val: width};
-    const currentX3 = {val: width};
-    const currentX4 = {val: width};
-    const currentX5 = {val: width};
-    const obstacle = new Obstacle(currentX1, currentY);
+    const currentX = {val: [width, width, width, width, width]};
+    //const currentX1 = {val: width};
+    const currentY = {val: (currentHeight.val + 40)};
+    // const currentX2 = {val: width};
+    // const currentX3 = {val: width};
+    // const currentX4 = {val: width};
+    // const currentX5 = {val: width};
+    const obstacle = new Obstacle(currentX.val[0], currentY);
     const score = {val: 0}, isTrue = {val: false};
     comingTheObstacles = setInterval(function() {
-        avoidTheObstacle(dinosaur, obstacle, score, currentWidth, currentHeight, currentX1, 
-            currentX2, currentX3, currentX4, currentX5, currentY, isTrue, comingTheObstacles);
+        avoidTheObstacle(dinosaur, obstacle, score, currentWidth, currentHeight, currentX, 
+            /*currentX2, currentX3, currentX4, currentX5,*/ currentY, isTrue, comingTheObstacles);
     }, 15); 
 }
 
