@@ -7,7 +7,8 @@ const isHit = {val: false};
 const dinosaurSize = {val: 60};
 const obstacleWidth = {val: 40}, obstacleHeight = {val: 20};
 const firstMessageWidth = {val: (width / 2) - 110}, firstMessageHeight = {val: (height / 2) - 50};
-const secMessageWidth = {val : (width / 2) - 150}
+const secMessageWidth = {val : (width / 2) - 150};
+const arraySize = {val: 4};
 
 class Dinosaur {
     constructor(dinosaurWidth, dinosaurHeight) {
@@ -90,22 +91,22 @@ function sun() {
 }
 
 function avoidTheObstacle(dinosaur, obstacle, score, currentWidth, currentHeight, currentX, currentY, isTrue, comingTheObstacles) {
-    for (let i = 0; i < 5; ++i) {
+    for (let i = 0; i <= arraySize.val; ++i) {
         obstacle.closeRange(currentX, currentY, i);
     }
     if (currentX.val[0] >= width / 2 && currentX.val[0] <= width / 2 + 285) {
         isTrue.val = false;
-        for (let i = 4; i > 0; --i) {
+        for (let i = arraySize.val; i > 0; --i) {
             currentX.val[i] = currentX.val[i - 1];
         }
         currentX.val[0] = width;
     }
-    if (((currentX.val[3] >= currentWidth.val && currentX.val[3] <= currentWidth.val + dinosaurSize.val) || 
-    (currentWidth.val - currentX.val[3] >= 0 && currentWidth.val - currentX.val[3] <= obstacleWidth.val + 10))
+    if (((currentX.val[arraySize.val - 1] >= currentWidth.val && currentX.val[arraySize.val - 1] <= currentWidth.val + dinosaurSize.val) || 
+    (currentWidth.val - currentX.val[arraySize.val - 1] >= 0 && currentWidth.val - currentX.val[arraySize.val - 1] <= obstacleWidth.val + 10))
         && currentY.val == currentHeight.val + dinosaurSize.val - obstacleHeight.val) {
         clearInterval(comingTheObstacles);
         gameOver(dinosaur, score);
-    } else if (currentWidth.val - currentX.val[3] > obstacleWidth.val && isTrue.val == false) {
+    } else if (currentWidth.val - currentX.val[arraySize.val - 1] > obstacleWidth.val && isTrue.val == false) {
         isTrue.val = true;
         ++score.val;
     }
