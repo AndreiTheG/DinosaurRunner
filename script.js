@@ -94,23 +94,23 @@ function avoidTheObstacle(dinosaur, obstacle, score, currentWidth, currentHeight
     //obstacle.closeRange(currentX3, currentY);
     //obstacle.closeRange(currentX4, currentY);
     //obstacle.closeRange(currentX5, currentY);
-    /*if (currentX1.val >= width / 2 && currentX1.val <= width / 2 + 285) {
+    if (currentX.val[0] >= width / 2 && currentX.val[0] <= width / 2 + 285) {
         isTrue.val = false;
-        currentX5.val = currentX4.val;
-        currentX4.val = currentX3.val;
-        currentX3.val = currentX2.val;
-        currentX2.val = currentX1.val;
-        currentX1.val = width;
+        currentX.val[4] = currentX.val[3];
+        currentX.val[3] = currentX.val[2];
+        currentX.val[2] = currentX.val[1];
+        currentX.val[1] = currentX.val[0];
+        currentX.val[0] = width;
     }
-    if (((currentX4.val >= currentWidth.val && currentX4.val <= currentWidth.val + 60) || 
-    (currentWidth.val - currentX4.val >= 0 && currentWidth.val - currentX4.val <= 50))
+    if (((currentX.val[3] >= currentWidth.val && currentX.val[3] <= currentWidth.val + 60) || 
+    (currentWidth.val - currentX.val[3] >= 0 && currentWidth.val - currentX.val[3] <= 50))
         && currentY.val == currentHeight.val + 40) {
         clearInterval(comingTheObstacles);
         gameOver(dinosaur, score);
-    } else if (currentWidth.val - currentX4.val > 40 && isTrue.val == false) {
+    } else if (currentWidth.val - currentX.val[3] > 40 && isTrue.val == false) {
         isTrue.val = true;
         ++score.val;
-    }*/
+    }
 }
 
 function startGame() {
