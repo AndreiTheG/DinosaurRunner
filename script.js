@@ -127,8 +127,7 @@ function startGame() {
     const obstacle = new Obstacle(currentX.val[0], currentY);
     const score = {val: 0}, isTrue = {val: false};
     comingTheObstacles = setInterval(function() {
-        avoidTheObstacle(dinosaur, obstacle, score, currentWidth, currentHeight, currentX, 
-            /*currentX2, currentX3, currentX4, currentX5,*/ currentY, isTrue, comingTheObstacles);
+        avoidTheObstacle(dinosaur, obstacle, score, currentWidth, currentHeight, currentX, currentY, isTrue, comingTheObstacles);
     }, 15); 
 }
 
