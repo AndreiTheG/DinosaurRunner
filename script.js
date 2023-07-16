@@ -4,47 +4,51 @@ const height = canvas.height = window.innerHeight;
 const ctx = canvas.getContext("2d");
 const coordonateX = {val: 30}, coordonateY = {val: canvas.height / 2};
 const isHit = {val: false};
+const dinosaurSize = {val: 60};
+const obstacleWidth = {val: 40}, obstacleHeight = {val: 20};
+const firstMessageWidth = {val: (width / 2) - 110}, firstMessageHeight = {val: (height / 2) - 50};
+const secMessageWidth = {val : (width / 2) - 150}
 
 class Dinosaur {
     constructor(dinosaurWidth, dinosaurHeight) {
         ctx.fillStyle = "rgb(255, 0, 0)";
-        ctx.fillRect(dinosaurWidth.val, dinosaurHeight.val, 60, 60);
+        ctx.fillRect(dinosaurWidth.val, dinosaurHeight.val, dinosaurSize.val, dinosaurSize.val);
     }
 
     jump(currentWidth, currentHeight) {
         ctx.fillStyle = "rgb(135, 206, 235)";
-        ctx.fillRect(currentWidth.val, currentHeight.val, 60, 60);
+        ctx.fillRect(currentWidth.val, currentHeight.val, dinosaurSize.val, dinosaurSize.val);
         currentHeight.val = currentHeight.val - 5;
         ctx.fillStyle = "rgb(255, 0, 0)";
-        ctx.fillRect(currentWidth.val, currentHeight.val, 60, 60);
+        ctx.fillRect(currentWidth.val, currentHeight.val, dinosaurSize.val, dinosaurSize.val);
     }
 
     fall(currentWidth, currentHeight) {
         ctx.fillStyle = "rgb(135, 206, 235)";
-        ctx.fillRect(currentWidth.val, currentHeight.val, 60, 60);
+        ctx.fillRect(currentWidth.val, currentHeight.val, dinosaurSize.val, dinosaurSize.val);
         currentHeight.val = currentHeight.val + 5;
         ctx.fillStyle = "rgb(255, 0, 0)";
-        ctx.fillRect(currentWidth.val, currentHeight.val, 60, 60);
+        ctx.fillRect(currentWidth.val, currentHeight.val, dinosaurSize.val, dinosaurSize.val);
     } 
 
     disappear(currentWidth, currentHeight) {
         ctx.fillStyle = "rgb(135, 206, 235)";
-        ctx.fillRect(currentWidth.val, currentHeight.val, 60, 60);
+        ctx.fillRect(currentWidth.val, currentHeight.val, dinosaurSize.val, dinosaurSize.val);
     }
 }
 
 class Obstacle {
     constructor(currentWidth, currentHeight) {
         ctx.fillStyle = "rgb(1, 50, 32)";
-        ctx.fillRect(currentWidth.val, currentHeight.val, 40, 20);
+        ctx.fillRect(currentWidth.val, currentHeight.val, obstacleWidth.val, obstacleHeight.val);
     }
 
     closeRange(currentWidth, currentHeight, poz) {
         ctx.fillStyle = "rgb(135, 206, 235)";
-        ctx.fillRect(currentWidth.val[poz], currentHeight.val, 40, 20);
+        ctx.fillRect(currentWidth.val[poz], currentHeight.val, obstacleWidth.val, obstacleHeight.val);
         currentWidth.val[poz] = currentWidth.val[poz] - 5;
         ctx.fillStyle = "rgb(1, 50, 32)";
-        ctx.fillRect(currentWidth.val[poz], currentHeight.val, 40, 20);
+        ctx.fillRect(currentWidth.val[poz], currentHeight.val, obstacleWidth.val, obstacleHeight.val);
     }
 }
 
@@ -96,12 +100,12 @@ function avoidTheObstacle(dinosaur, obstacle, score, currentWidth, currentHeight
         }
         currentX.val[0] = width;
     }
-    if (((currentX.val[3] >= currentWidth.val && currentX.val[3] <= currentWidth.val + 60) || 
-    (currentWidth.val - currentX.val[3] >= 0 && currentWidth.val - currentX.val[3] <= 50))
-        && currentY.val == currentHeight.val + 40) {
+    if (((currentX.val[3] >= currentWidth.val && currentX.val[3] <= currentWidth.val + dinosaurSize.val) || 
+    (currentWidth.val - currentX.val[3] >= 0 && currentWidth.val - currentX.val[3] <= obstacleWidth.val + 10))
+        && currentY.val == currentHeight.val + dinosaurSize.val - obstacleHeight.val) {
         clearInterval(comingTheObstacles);
         gameOver(dinosaur, score);
-    } else if (currentWidth.val - currentX.val[3] > 40 && isTrue.val == false) {
+    } else if (currentWidth.val - currentX.val[3] > obstacleWidth.val && isTrue.val == false) {
         isTrue.val = true;
         ++score.val;
     }
@@ -109,11 +113,11 @@ function avoidTheObstacle(dinosaur, obstacle, score, currentWidth, currentHeight
 
 function startGame() {
     ctx.beginPath();
-    ctx.moveTo(0, coordonateY.val + 61);
-    ctx.lineTo(width, coordonateY.val + 61);
+    ctx.moveTo(0, coordonateY.val + dinosaurSize.val + 1);
+    ctx.lineTo(width, coordonateY.val + dinosaurSize.val + 1);
     ctx.stroke();
     ctx.fillStyle = "rgb(135, 206, 235)";
-    ctx.fillRect(0, 0, width, height / 2 + 60);
+    ctx.fillRect(0, 0, width, height / 2 + dinosaurSize.val);
     ctx.fillStyle = "rgb(0, 255, 0)";
     ctx.fillRect(0, coordonateY.val + 60, width, height / 2);
     sun();
@@ -122,7 +126,7 @@ function startGame() {
     const isPressed = {val: false};
     gameController(dinosaur, currentWidth, currentHeight, isPressed);
     const currentX = {val: [width, width, width, width, width]};
-    const currentY = {val: (currentHeight.val + 40)};
+    const currentY = {val: (currentHeight.val + dinosaurSize.val - obstacleHeight.val)};
     const obstacle = new Obstacle(currentX.val[0], currentY);
     const score = {val: 0}, isTrue = {val: false};
     comingTheObstacles = setInterval(function() {
@@ -138,14 +142,14 @@ function gameOver(dinosaur, score) {
     isHit.val = true;
     dinosaur.disappear(coordonateX, coordonateY);
     ctx.fillStyle = "rgb(135, 206, 235)";
-    ctx.fillRect(0, 0, width, height / 2 + 60);
+    ctx.fillRect(0, 0, width, height / 2 + dinosaurSize.val);
     ctx.fillStyle = "rgb(0, 255, 0)";
-    ctx.fillRect(0, coordonateY.val + 60, width, (height / 2) + 30);
+    ctx.fillRect(0, coordonateY.val + dinosaurSize.val, width, height / 2);
     sun();
     ctx.fillStyle = "black";
     ctx.font = "48px Arial";
-    ctx.fillText("Game over!", (width / 2) - 110, (height / 2 - 50));
-    ctx.fillText("Your score is " + score.val + "!", (width / 2) - 150, height / 2);
+    ctx.fillText("Game over!", firstMessageWidth.val, firstMessageHeight.val);
+    ctx.fillText("Your score is " + score.val + "!", secMessageWidth.val, height / 2);
     let container = document.createElement('div');
     container.className = "text-center"
     let button = document.createElement('button');
