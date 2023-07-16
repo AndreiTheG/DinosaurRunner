@@ -91,10 +91,9 @@ function avoidTheObstacle(dinosaur, obstacle, score, currentWidth, currentHeight
     }
     if (currentX.val[0] >= width / 2 && currentX.val[0] <= width / 2 + 285) {
         isTrue.val = false;
-        currentX.val[4] = currentX.val[3];
-        currentX.val[3] = currentX.val[2];
-        currentX.val[2] = currentX.val[1];
-        currentX.val[1] = currentX.val[0];
+        for (let i = 4; i > 0; --i) {
+            currentX.val[i] = currentX.val[i - 1];
+        }
         currentX.val[0] = width;
     }
     if (((currentX.val[3] >= currentWidth.val && currentX.val[3] <= currentWidth.val + 60) || 
@@ -116,7 +115,7 @@ function startGame() {
     ctx.fillStyle = "rgb(135, 206, 235)";
     ctx.fillRect(0, 0, width, height / 2 + 60);
     ctx.fillStyle = "rgb(0, 255, 0)";
-    ctx.fillRect(0, coordonateY.val + 60, width, (height / 2) + 30);
+    ctx.fillRect(0, coordonateY.val + 60, width, height / 2);
     sun();
     const dinosaur = new Dinosaur(coordonateX, coordonateY);
     const currentWidth = {val: coordonateX.val}, currentHeight = {val: coordonateY.val};
