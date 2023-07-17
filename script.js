@@ -12,6 +12,7 @@ const arraySize = {val: 4};
 const nrIterations = {val: 20};
 const groundHeight = {val: coordonateY.val + 60};
 const maxCoordXPos = {val: width / 2 + 285};
+const sunCoordX = {val: 850}, sunCoordY = {val: 80}, sunDiameter = {val : 20};
 
 class Dinosaur {
     constructor(dinosaurWidth, dinosaurHeight) {
@@ -86,7 +87,7 @@ function gameController(dinosaur, currentWidth, currentHeight, isPressed) {
 
 function sun() {
     ctx.beginPath();
-    ctx.arc(850, 80, 20, 0, 2 * Math.PI);
+    ctx.arc(sunCoordX.val, sunCoordY.val, sunDiameter.val, 0, 2 * Math.PI);
     ctx.fillStyle = "rgb(255, 255, 0)";
     ctx.strokeStyle = "rgb(255, 255, 0)";
     ctx.fill();
