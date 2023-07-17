@@ -11,6 +11,7 @@ const secMessageWidth = {val : (width / 2) - 150};
 const arraySize = {val: 4};
 const nrIterations = {val: 20};
 const groundHeight = {val: coordonateY.val + 60};
+const maxCoordXPos = {val: width / 2 + 285};
 
 class Dinosaur {
     constructor(dinosaurWidth, dinosaurHeight) {
@@ -96,7 +97,7 @@ function avoidTheObstacle(dinosaur, obstacle, score, currentWidth, currentHeight
     for (let i = 0; i <= arraySize.val; ++i) {
         obstacle.closeRange(currentX, currentY, i);
     }
-    if (currentX.val[0] >= width / 2 && currentX.val[0] <= width / 2 + 285) {
+    if (currentX.val[0] >= width / 2 && currentX.val[0] <= maxCoordXPos.val) {
         isTrue.val = false;
         for (let i = arraySize.val; i > 0; --i) {
             currentX.val[i] = currentX.val[i - 1];
