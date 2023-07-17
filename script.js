@@ -13,6 +13,7 @@ const nrIterations = {val: 20};
 const groundHeight = {val: coordonateY.val + 60};
 const maxCoordXPos = {val: width / 2 + 285};
 const sunCoordX = {val: 850}, sunCoordY = {val: 80}, sunDiameter = {val : 20};
+const maxDistance = {val: obstacleWidth.val + 10};
 
 class Dinosaur {
     constructor(dinosaurWidth, dinosaurHeight) {
@@ -106,7 +107,7 @@ function avoidTheObstacle(dinosaur, obstacle, score, currentWidth, currentHeight
         currentX.val[0] = width;
     }
     if (((currentX.val[arraySize.val - 1] >= currentWidth.val && currentX.val[arraySize.val - 1] <= currentWidth.val + dinosaurSize.val) || 
-    (currentWidth.val - currentX.val[arraySize.val - 1] >= 0 && currentWidth.val - currentX.val[arraySize.val - 1] <= obstacleWidth.val + 10))
+    (currentWidth.val - currentX.val[arraySize.val - 1] >= 0 && currentWidth.val - currentX.val[arraySize.val - 1] <= maxDistance.val))
         && currentY.val == currentHeight.val + dinosaurSize.val - obstacleHeight.val) {
         clearInterval(comingTheObstacles);
         gameOver(dinosaur, score);
