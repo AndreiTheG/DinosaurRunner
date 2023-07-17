@@ -9,6 +9,8 @@ const obstacleWidth = {val: 40}, obstacleHeight = {val: 20};
 const firstMessageWidth = {val: (width / 2) - 110}, firstMessageHeight = {val: (height / 2) - 50};
 const secMessageWidth = {val : (width / 2) - 150};
 const arraySize = {val: 4};
+const nrIterations = {val: 20};
+const groundHeight = {val: coordonateY.val + 60};
 
 class Dinosaur {
     constructor(dinosaurWidth, dinosaurHeight) {
@@ -64,7 +66,7 @@ function gameController(dinosaur, currentWidth, currentHeight, isPressed) {
                 dinosaur.jump(currentWidth, currentHeight);
                 ++value.val;
                 val = value.val;
-                if (value.val == 20) {
+                if (value.val == nrIterations.val) {
                     value.val = 0;
                     timeout2 = setInterval(function() {
                         ++value.val;
@@ -120,7 +122,7 @@ function startGame() {
     ctx.fillStyle = "rgb(135, 206, 235)";
     ctx.fillRect(0, 0, width, height / 2 + dinosaurSize.val);
     ctx.fillStyle = "rgb(0, 255, 0)";
-    ctx.fillRect(0, coordonateY.val + 60, width, height / 2);
+    ctx.fillRect(0, groundHeight.val, width, height / 2);
     sun();
     const dinosaur = new Dinosaur(coordonateX, coordonateY);
     const currentWidth = {val: coordonateX.val}, currentHeight = {val: coordonateY.val};
@@ -145,7 +147,7 @@ function gameOver(dinosaur, score) {
     ctx.fillStyle = "rgb(135, 206, 235)";
     ctx.fillRect(0, 0, width, height / 2 + dinosaurSize.val);
     ctx.fillStyle = "rgb(0, 255, 0)";
-    ctx.fillRect(0, coordonateY.val + dinosaurSize.val, width, height / 2);
+    ctx.fillRect(0, groundHeight.val, width, height / 2);
     sun();
     ctx.fillStyle = "black";
     ctx.font = "48px Arial";
