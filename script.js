@@ -73,7 +73,7 @@ function gameController(dinosaur, currentWidth, currentHeight, isPressed) {
                     timeout2 = setInterval(function() {
                         ++value.val;
                         dinosaur.fall(currentWidth, currentHeight);
-                        if (value.val == 20) {
+                        if (value.val == nrIterations.val) {
                             pressed.val = false;
                             clearInterval(timeout2);
                         }
