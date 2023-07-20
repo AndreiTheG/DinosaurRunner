@@ -52,6 +52,7 @@ class Obstacle {
     closeRange(currentWidth, currentHeight, poz) {
         ctx.fillStyle = "rgb(135, 206, 235)";
         ctx.fillRect(currentWidth.val[poz], currentHeight.val, obstacleWidth.val, obstacleHeight.val);
+        ctx.strokeStyle = "rgb(135, 206, 235)";
         currentWidth.val[poz] = currentWidth.val[poz] - 5;
         ctx.fillStyle = "rgb(1, 50, 32)";
         ctx.fillRect(currentWidth.val[poz], currentHeight.val, obstacleWidth.val, obstacleHeight.val);
