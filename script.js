@@ -24,6 +24,8 @@ class Dinosaur {
     jump(currentWidth, currentHeight) {
         ctx.fillStyle = "rgb(135, 206, 235)";
         ctx.fillRect(currentWidth.val, currentHeight.val, dinosaurSize.val, dinosaurSize.val);
+        ctx.strokeStyle = "rgb(135, 206, 235)";
+        ctx.strokeRect(currentWidth.val, currentHeight.val, dinosaurSize.val, dinosaurSize.val);
         currentHeight.val = currentHeight.val - 5;
         ctx.fillStyle = "rgb(255, 0, 0)";
         ctx.fillRect(currentWidth.val, currentHeight.val, dinosaurSize.val, dinosaurSize.val);
@@ -32,6 +34,8 @@ class Dinosaur {
     fall(currentWidth, currentHeight) {
         ctx.fillStyle = "rgb(135, 206, 235)";
         ctx.fillRect(currentWidth.val, currentHeight.val, dinosaurSize.val, dinosaurSize.val);
+        ctx.strokeStyle = "rgb(135, 206, 235)";
+        ctx.strokeRect(currentWidth.val, currentHeight.val, dinosaurSize.val, dinosaurSize.val);
         currentHeight.val = currentHeight.val + 5;
         ctx.fillStyle = "rgb(255, 0, 0)";
         ctx.fillRect(currentWidth.val, currentHeight.val, dinosaurSize.val, dinosaurSize.val);
